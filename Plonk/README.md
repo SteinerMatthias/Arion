@@ -11,6 +11,6 @@ To benchmark ArionHash make sure that [Rust](https://www.rust-lang.org/) is inst
 Then one can compile and run the benchmark using the following commands.
 
 ```bash
-cd Merkle Tree Benchmark
+cd "Merkle Tree Benchmark"
 cargo bench --features zk
 ```
