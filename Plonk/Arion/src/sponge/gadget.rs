@@ -1,4 +1,5 @@
-use crate::{strategies::GadgetStrategy, WIDTH};
+use crate::WIDTH;
+use crate::strategies::GadgetStrategy;
 use dusk_plonk::prelude::*;
 
 /// Mirror the implementation of [`hash`] inside of a PLONK circuit.

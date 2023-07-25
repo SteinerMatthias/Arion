@@ -1,5 +1,6 @@
 //! Sponge hash and gadget definition
-use crate::{strategies::ScalarStrategy, strategies::Strategy, WIDTH};
+use crate::WIDTH;
+use crate::{strategies::ScalarStrategy, strategies::Strategy};
 use dusk_bls12_381::BlsScalar;
 
 /// The `hash` function takes an arbitrary number of Scalars and returns the

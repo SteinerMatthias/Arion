@@ -31,7 +31,3 @@ pub mod perm_uses;
 
 /// Reference implementation for the Arion Sponge hash function
 pub mod sponge;
-
-/// The module handling poseidon-trees.
-#[cfg(feature = "alloc")]
-pub mod tree;

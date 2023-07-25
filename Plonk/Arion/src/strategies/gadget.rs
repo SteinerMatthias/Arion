@@ -255,7 +255,7 @@ mod tests {
     }
 
     /// Setup the test circuit prover and verifier
-    fn setup() -> Result<(Prover<TestCircuit>, Verifier<TestCircuit>), Error> {
+    fn setup() -> Result<(Prover, Verifier), Error> {
         const CAPACITY: usize = 1 << 10;
 
         let pp = PublicParameters::setup(CAPACITY, &mut rand::thread_rng())?;
