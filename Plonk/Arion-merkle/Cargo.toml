@@ -8,8 +8,8 @@ edition = "2021"
 [dependencies]
 dusk-merkle = { version = "0.5" }
 arion = { path = "../Arion", default-features = false, features = ["merkle"] }
-dusk-bls12_381 = { version = "0.11", default-features = false }
-dusk-plonk = { version = "0.14", optional = true, default-features = false }
+dusk-bls12_381 = { version = "0.12", default-features = false }
+dusk-plonk = { version = "0.16", optional = true, default-features = false }
 rkyv = { version = "0.7", optional = true, default-features = false }
 bytecheck = { version = "0.6", optional = true, default-features = false }
 

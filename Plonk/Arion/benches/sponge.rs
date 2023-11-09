@@ -47,11 +47,11 @@ fn bench_sponge(c: &mut Criterion) {
     let mut proof = Proof::default();
     let public_inputs = Vec::new();
     let message = [
-        BlsScalar::random(rng),
-        BlsScalar::random(rng),
-        BlsScalar::random(rng),
-        BlsScalar::random(rng),
-        BlsScalar::random(rng),
+        BlsScalar::uni_random(rng),
+        BlsScalar::uni_random(rng),
+        BlsScalar::uni_random(rng),
+        BlsScalar::uni_random(rng),
+        BlsScalar::uni_random(rng),
     ];
     let circuit = SpongeCircuit::new(message);
 

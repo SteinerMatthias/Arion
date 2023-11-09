@@ -7,13 +7,13 @@ categories = ["algorithms", "cryptography", "no-std", "wasm"]
 keywords = ["cryptography", "zero-knowledge", "crypto"]
 
 [dependencies]
-dusk-bls12_381 = { version = "0.11", default-features = false }
-dusk-jubjub = { version = "0.12", default-features = false }
+dusk-bls12_381 = { version = "0.12", default-features = false }
+dusk-jubjub = { version = "0.13", default-features = false }
 dusk-bytes = "0.1"
 microkelvin = { version = "0.17", optional = true }
 nstack = { version = "0.16", optional = true }
 ranno = { version = "0.1", optional = true }
-dusk-plonk = { version = "0.14", default-features = false, features = ["alloc"] }
+dusk-plonk = { version = "0.16", default-features = false, features = ["alloc"] }
 rkyv = { version = "0.7", optional = true, default-features = false }
 bytecheck = { version = "0.6", optional = true, default-features = false }
 
@@ -25,7 +25,6 @@ rkyv = { version = "0.7", default-features = false, features = ["size_32"] }
 [features]
 default = [
     "dusk-plonk/std",
-    "dusk-jubjub/std",
     "dusk-bls12_381/default",
     "alloc",
 ]

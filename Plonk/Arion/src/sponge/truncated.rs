@@ -1,4 +1,8 @@
 //! Sponge hash and gadget definition
+#[cfg(feature = "alloc")]
+use crate::WIDTH;
+#[cfg(feature = "alloc")]
+use crate::strategies::GadgetStrategy;
 
 use crate::sponge;
 use dusk_bls12_381::BlsScalar;
@@ -51,12 +55,45 @@ pub fn hash(messages: &[BlsScalar]) -> JubJubScalar {
 ///
 /// [`hash`]: crate::sponge::hash
 #[cfg(feature = "alloc")]
-pub fn gadget<C>(composer: &mut C, message: &[Witness]) -> Witness
+pub fn gadget<C>(composer: &mut C, messages: &[Witness]) -> Witness
 where
     C: Composer,
 {
-    let h = sponge::gadget(composer, message);
+    let mut state = [C::ZERO; WIDTH];
 
-    // Truncate to 250 bits
-    composer.append_logic_xor(h, C::ZERO, 250)
+    let l = messages.len();
+    let m = l / (WIDTH - 1);
+    let n = m * (WIDTH - 1);
+    let last_iteration = if l == n { m - 1 } else { l / (WIDTH - 1) };
+
+    messages
+        .chunks(WIDTH - 1)
+        .enumerate()
+        .for_each(|(i, chunk)| {
+            state[1..].iter_mut().zip(chunk.iter()).for_each(|(s, c)| {
+                let constraint = Constraint::new().left(1).a(*s).right(1).b(*c);
+
+                *s = composer.gate_add(constraint);
+            });
+
+            if i == last_iteration && chunk.len() < WIDTH - 1 {
+                let constraint = Constraint::new()
+                    .left(1)
+                    .a(state[chunk.len() + 1])
+                    .constant(1);
+
+                state[chunk.len() + 1] = composer.gate_add(constraint);
+            } else if i == last_iteration {
+                GadgetStrategy::gadget(composer, &mut state);
+
+                let constraint =
+                    Constraint::new().left(1).a(state[1]).constant(1);
+
+                state[1] = composer.gate_add(constraint);
+            }
+
+            GadgetStrategy::gadget(composer, &mut state);
+        });
+
+    state[1]
 }

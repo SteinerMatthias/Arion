@@ -89,7 +89,7 @@ mod tests {
     // High degree inverse S-Box is inverse of `x^{257}`
     fn high_degree_permutation(samples: usize) {
         for _i in 1..samples {
-            let val = BlsScalar::random(&mut rand::thread_rng());
+            let val = BlsScalar::uni_random(&mut rand::thread_rng());
             let val_2 = val.pow_vartime(&[
                                                         8469711284772863745,
                                                         1214928404647555091,

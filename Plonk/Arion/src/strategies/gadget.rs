@@ -244,7 +244,7 @@ mod tests {
 
         input
             .iter_mut()
-            .for_each(|s| *s = BlsScalar::random(&mut rand::thread_rng()));
+            .for_each(|s| *s = BlsScalar::uni_random(&mut rand::thread_rng()));
 
         let mut output = [BlsScalar::zero(); WIDTH];
 

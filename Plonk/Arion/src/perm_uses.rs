@@ -28,7 +28,7 @@ mod tests {
 
     #[test]
     fn hash_two_outputs() {
-        let m = BlsScalar::random(&mut OsRng);
+        let m = BlsScalar::uni_random(&mut OsRng);
 
         let h = two_outputs(m);
 
@@ -41,7 +41,7 @@ mod tests {
     #[test]
     fn same_result() {
         for _i in 0..100 {
-            let m = BlsScalar::random(&mut OsRng);
+            let m = BlsScalar::uni_random(&mut OsRng);
 
             let h = two_outputs(m);
             let h_1 = two_outputs(m);
